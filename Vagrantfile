@@ -33,9 +33,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # Set Provider Name
         vb.name = "vagrant_web"
         vb.customize ["modifyvm", :id, "--memory", "512"]
-      end
+		
+		## Enable This If Having Truble Loggin
+		#vb.gui = true
+      
+	  end
 
-      # conf.vm.provision "shell", path: "Vagrant.Provision.sh"
+      #conf.vm.provision "shell", path: "Vagrant.Provision.sh"
   end
 
   ## db ---------------------------------------------------------------------------
