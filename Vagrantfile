@@ -43,7 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #conf.vm.provision "shell", path: "Vagrant.Provision.sh"
       
       # get ip address of host
-      config.vm.provision "shell", inline: "ip addr | grep 'inet'"
+      conf.vm.provision "shell", inline: "ip addr | grep 'inet'"
   end
 
   ## db ---------------------------------------------------------------------------
