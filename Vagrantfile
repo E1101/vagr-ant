@@ -13,7 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## web ---------------------------------------------------------------------------
   config.vm.define "web" do |conf|
       # conf.vm.network "private_network", ip: "192.168.50.50"
-
+      # conf.vm.network "public_network",  ip: "192.168.0.17"
+      
       # Forward http port on 8080, used for connecting web browsers to localhost:8080
       conf.vm.network :forwarded_port, guest: 80, host: 8080
       # MariaDB 
