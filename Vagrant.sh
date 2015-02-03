@@ -1,6 +1,9 @@
 #!/bin/sh
 
 # Remember To ShutDown "selinux"
+if [ -f "/var/vagrant_provision" ]; then
+    exit 0
+fi
 
 echo "(o) Installing Apache and setting it up..."
 yum -y install httpd
