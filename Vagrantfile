@@ -35,10 +35,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.name = "vagrant_web"
         vb.customize ["modifyvm", :id, "--memory", "512"]
 		
-		## Enable This If Having Truble Loggin
-		#vb.gui = true
+	## Enable This If Having Truble Loggin
+	#vb.gui = true
+	
+	## Enable Internet
+	vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
       
-	  end
+      end
 
       #conf.vm.provision "shell", path: "Vagrant.Provision.sh"
       
