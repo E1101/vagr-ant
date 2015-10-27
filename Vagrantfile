@@ -5,7 +5,10 @@
 # | xdebug Enabled
 # | Append ?XDEBUG_PROFILE=1 to start profiling
 # |
+# | /etc/php5/apache2/php.ini
 # |
+# | log to shared vagrant folder
+# | error_log = /vagrant/php_errors.log
 
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
@@ -23,14 +26,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # conf.vm.network "public_network", ip: "192.168.50.10", type: "dhcp"
       
       # Forward http port on 8080, used for connecting web browsers to localhost:8080
-      conf.vm.network :forwarded_port, guest: 80, host: 8080
-      conf.vm.network :forwarded_port, guest: 9000, host: 9090
+       conf.vm.network :forwarded_port, guest: 80, host: 8080
+      # conf.vm.network :forwarded_port, guest: 9000, host: 9000
 
       # MariaDB
       # conf.vm.network :forwarded_port, guest: 3306, host: 33066
 
       # Set share folder permissions to 777 so that apache can write files
-      conf.vm.synced_folder './Poirot-Skeleton', '/var/www/html'
+      conf.vm.synced_folder './skeleton', '/var/www/html'
         #, mount_options: ['dmode=777','fmode=666']
       # Disable default vagrant folder
       conf.vm.synced_folder './data', '/vagrant'
@@ -49,7 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	
 	## Enable Internet
 	vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 
     end
 
