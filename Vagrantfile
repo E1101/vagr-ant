@@ -2,12 +2,14 @@
 # vi: set ft=ruby :
 
 # ----------------------------------------------------------------------------------
-# | xdebug Enabled
+# | - xdebug Enabled
 # | Append ?XDEBUG_PROFILE=1 to start profiling
+# | : to xdebug working enable port forward 9000 from guest(vagrant)
 # |
+# | - php conf
 # | /etc/php5/apache2/php.ini
 # |
-# | log to shared vagrant folder
+# | - php log to shared vagrant folder
 # | error_log = /vagrant/php_errors.log
 
 
@@ -21,13 +23,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ##### INDIVIDUALS ############################################################
 
   ## web ---------------------------------------------------------------------------
-  config.vm.define "poirot" do |conf|
+  config.vm.define "server" do |conf|
       # conf.vm.network "private_network", ip: "192.168.50.50"
       # conf.vm.network "public_network", ip: "192.168.50.10", type: "dhcp"
       
       # Forward http port on 8080, used for connecting web browsers to localhost:8080
-       conf.vm.network :forwarded_port, guest: 80, host: 8080
-      # conf.vm.network :forwarded_port, guest: 9000, host: 9000
+      conf.vm.network :forwarded_port, guest: 80, host: 8080
+
+      # XDebug
+      conf.vm.network :forwarded_port, guest: 9000, host: 9000
 
       # MariaDB
       # conf.vm.network :forwarded_port, guest: 3306, host: 33066
@@ -44,7 +48,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # Use VBoxManage to customize the VM. For example to change memory:
 
         # Set Provider Name
-        vb.name = "vagrant_poirot"
+        vb.name = "vagrant_server"
         vb.customize ["modifyvm", :id, "--memory", "512"]
 		
 	## Enable This If Having Truble Loggin
